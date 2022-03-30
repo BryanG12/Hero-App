@@ -5,11 +5,10 @@ import { AuthContext } from "../auth/authContext"
 export const PrivateRoute = ({children}) => {
 
   const { user } = useContext(AuthContext);
-  const location = useLocation();
+  const { pathname, search } = useLocation();
 
-  const path = `${location.pathname}${location.search}`;
-  // console.log(path);
-  localStorage.setItem('lastPath',path);
+
+  localStorage.setItem('lastPath', pathname + search);
   
   return user.logged
     ? children
